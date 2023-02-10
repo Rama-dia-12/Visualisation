@@ -817,9 +817,13 @@ Et le voici après les modifications mentionnées plus haut sur OpenRefine :
     
 <iframe src='https://datawrapper.dwcdn.net/WTsSC/1/embed' title='Réalisateurs ayant comptabilisé le plus d'entrées dans les salles françaises' frameborder='0' scrolling='yes' style='width:600;height:450px;'></iframe>
   
-   **e. Wikidata Query Service**
+   **e. Le Cinéma Français à l'international avec Wikidata Query Service**
    
-   (carte des cinémas de France ? part d'audience des films fraançais comparés aux films Us?")
+   L'analyse de ces données laisse clairement transparaître l'enthousiasme des français pour le grand écran, tant du côté des spectateurs que de celui des créateurs. Cependant, elle soulève également d'autres questions. On pourrait par exemple se demander ce qu'il en est du succès - ou non - du cinéma français contemporain à l'international, en compaaison avec les autres pays. Pour obtenir des données pertinentes à ce sujet, il a fallu interroger la base de données Wikidata. J'ai formulé la requête suivante :
+
+
+J'ai ainsi pu obtenir le visuel en bar chart suivant :
+<iframe style="width: 80vw; height: 50vh; border: none;" src="https://query.wikidata.org/embed.html#%23%20cr%C3%A9ation%20de%20colonnes%20qui%20renseignent%20%3A%20le%20pays%20d%27origine%2C%20les%20chiffres%20au%20box%20office%2C%20ainsi%20que%20les%20noms%20de%20ces%20films%0ASELECT%20DISTINCT%20%3Fitem%20%3Forigincountry%20%3Fboxoffice%20%3Fname%20%20WHERE%20%7B%0A%20%20%3Fitem%20rdfs%3Alabel%20%3Fname%3B%0A%20%20%20%20%20%20%20%20wdt%3AP31%20wd%3AQ11424%3B%20%23%20d%C3%A9claration%20des%20titres%20comme%20%C3%A9tant%20de%20nature%20%22film%22%0A%20%20%20%20%20%20%20%20wdt%3AP577%20%3Fpublication_date%3B%20%23%20indication%20de%20leur%20date%20de%20publication%0A%20%20%20%20%20%20%20%20wdt%3AP2142%20%3Fboxoffice.%20%23%20indication%20de%20leurs%20chiffres%20au%20box%20office%0A%20%20OPTIONAL%20%7B%0A%20%20%20%20%3Fitem%20wdt%3AP495%20%3FQorigincountry.%20%23%20affichage%20du%20nom%20du%20pays%20d%27origine%0A%20%20%20%20%3FQorigincountry%20rdfs%3Alabel%20%3Forigincountry.%0A%20%20%20%20FILTER%28%28LANG%28%3Forigincountry%29%29%20%3D%20%22fr%22%29%20%23%20en%20fran%C3%A7ais%20%20%0A%20%20%7D%0A%23%20limitation%20de%20la%20requ%C3%AAte%20aux%20films%20sortis%20depuis%20le%20d%C3%A9but%20de%20l%27ann%C3%A9e%202022%2C%20dont%20on%20veut%20le%20titre%20en%20fran%C3%A7ais%20%20%20%20%20%20%20%20%0A%20%20FILTER%28xsd%3Adate%28%3Fpublication_date%29%20%3E%20%222022-01-01%22%5E%5Exsd%3Adate%29%0A%20%20FILTER%20%28%20lang%28%3Fname%29%20%3D%20%22fr%22%29%0A%20%7D%0AORDER%20BY%20%3Fboxoffice%20%23%20classement%20par%20chiffre%20r%C3%A9alis%C3%A9%0A%0A" referrerpolicy="origin" sandbox="allow-scripts allow-same-origin allow-popups" ></iframe>
 
 **Conclusion**
   
